@@ -1,0 +1,14 @@
+{
+  "name": "pedagios",
+  "version": "1.0.0",
+  "description": "Teste do sistema de pedágios",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Fábio Valentim",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
