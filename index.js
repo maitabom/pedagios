@@ -1,10 +1,14 @@
 var express = require("express");
-var app = express();
+var path = require("path");
 
-app.use(express.static("view"));
+var app = express();
+var view = path.join(__dirname, "./view")
+//app.use(express.static("view"));
 
 app.get("/", function (req, res) {
-    res.send("Olá, mundo!");
+    res.sendFile("index.html", {
+        root: view
+    });
 });
 
-app.listen(8080);
+app.listen(8080, () => console.log("O servidor está sendo executado."));
