@@ -2,12 +2,13 @@ var express = require("express");
 var path = require("path");
 
 var app = express();
-var view = path.join(__dirname, "./view")
-//app.use(express.static("view"));
+//var view = path.join(__dirname, "./view")
+app.use(express.static("public"));
+app.set('view engine', 'ejs');
 
 app.get("/", function (req, res) {
-    res.sendFile("index.html", {
-        root: view
+    res.render("index", {
+        teste: "Fabio Valentim"
     });
 });
 
