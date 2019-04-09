@@ -1,16 +1,18 @@
 var latitude, longitude;
 
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function (position) {
-        latitude = position.coords.latitude;
-        longitude = position.coords.longitude;
+$(function () {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            latitude = position.coords.latitude;
+            longitude = position.coords.longitude;
+            showMap(latitude, longitude);
+        });
+    } else {
+        latitude = -23.5502;
+        longitude = -46.6341;
         showMap(latitude, longitude);
-    });
-} else {
-    latitude = -23.5502;
-    longitude = -46.6341;
-    showMap(latitude, longitude);
-}
+    }
+});
 
 function showMap(latitude, longitude) {
     var mymap = L.map('map').setView([latitude, longitude], 10);
