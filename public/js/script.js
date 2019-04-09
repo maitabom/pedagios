@@ -12,6 +12,56 @@ $(function () {
         longitude = -46.6341;
         showMap(latitude, longitude);
     }
+
+    $("#origem").autocomplete({
+        source: function (request, response) {
+            var query = request.term;
+            var url = "http://nominatim.openstreetmap.org/search?format=json&limit=5&q=";
+
+            $.ajax({
+                url: url + query,
+                dataType: 'json',
+                success: function (data) {
+                    response(data);
+                }
+            });
+        },
+        select: function (event, ui) {
+            //$('#nome_funcionario').val(ui.item.nome.trim());
+            //$('#id_funcionario').val(ui.item.id);
+
+            return false;
+        }
+    }).autocomplete("instance")._renderItem = function (ul, item) {
+        return $("<li>")
+            .append('<span>' + item.display_name.trim() + '</span>')
+            .appendTo(ul);
+    };
+
+    $("#destino").autocomplete({
+        source: function (request, response) {
+            var query = request.term;
+            var url = "http://nominatim.openstreetmap.org/search?format=json&limit=5&q=";
+
+            $.ajax({
+                url: url + query,
+                dataType: 'json',
+                success: function (data) {
+                    response(data);
+                }
+            });
+        },
+        select: function (event, ui) {
+            //$('#nome_funcionario').val(ui.item.nome.trim());
+            //$('#id_funcionario').val(ui.item.id);
+
+            return false;
+        }
+    }).autocomplete("instance")._renderItem = function (ul, item) {
+        return $("<li>")
+            .append('<span>' + item.display_name.trim() + '</span>')
+            .appendTo(ul);
+    };
 });
 
 function showMap(latitude, longitude) {
